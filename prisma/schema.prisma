@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String    @id @default(cuid())
+  name        String
+  role        Role
+  avatarColor String    @map("avatar_color")
+  tasks       Task[]    @relation("AssignedTasks")
+  comments    Comment[]
+
+  @@map("users")
+}
+
+model Project {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  tasks       Task[]
+
+  @@map("projects")
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus @default(TODO)
+  position    Int        @default(0)
+  projectId   String     @map("project_id")
+  assigneeId  String?    @map("assignee_id")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  project  Project  @relation(fields: [projectId], references: [id])
+  assignee User?    @relation("AssignedTasks", fields: [assigneeId], references: [id])
+  comments Comment[]
+
+  @@index([projectId])
+  @@index([assigneeId])
+  @@index([projectId, status])
+  @@map("tasks")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  body      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  taskId    String   @map("task_id")
+  authorId  String   @map("author_id")
+
+  task   Task @relation(fields: [taskId], references: [id])
+  author User @relation(fields: [authorId], references: [id])
+
+  @@index([taskId])
+  @@index([authorId])
+  @@map("comments")
+}
+
+enum Role {
+  PRODUCT_MANAGER
+  ENGINEER
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+}

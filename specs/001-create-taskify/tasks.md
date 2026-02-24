@@ -19,10 +19,10 @@
 
 **Purpose**: Next.js プロジェクトの初期化と開発ツールの設定
 
-- [ ] T001 Initialize Next.js 15 project with TypeScript and Tailwind CSS 4 via `npx create-next-app@latest`
-- [ ] T002 [P] Install runtime dependencies (@dnd-kit/core, @dnd-kit/sortable, prisma, @prisma/client) in package.json
-- [ ] T003 [P] Configure ESLint + Prettier with unified project-wide settings in .eslintrc.json and .prettierrc
-- [ ] T004 [P] Configure Vitest and Playwright test runners in vitest.config.ts and playwright.config.ts
+- [x] T001 Initialize Next.js 15 project with TypeScript and Tailwind CSS 4 via `npx create-next-app@latest`
+- [x] T002 [P] Install runtime dependencies (@dnd-kit/core, @dnd-kit/sortable, prisma, @prisma/client) in package.json
+- [x] T003 [P] Configure ESLint + Prettier with unified project-wide settings in .eslintrc.json and .prettierrc
+- [x] T004 [P] Configure Vitest and Playwright test runners in vitest.config.ts and playwright.config.ts
 
 ---
 
@@ -32,16 +32,16 @@
 
 **⚠️ CRITICAL**: このフェーズが完了するまでユーザーストーリーの実装は開始不可
 
-- [ ] T005 Create Prisma schema with User, Project, Task, Comment entities, Role/TaskStatus enums, and 5 indexes in prisma/schema.prisma
-- [ ] T006 Run initial Prisma migration via `npx prisma migrate dev --name init`
-- [ ] T007 [P] Create Prisma client singleton with dev hot-reload guard in src/lib/db.ts
-- [ ] T008 [P] Create shared TypeScript type definitions (User, Project, Task, Comment, API response types) in src/types/index.ts
-- [ ] T009 [P] Create constants (TaskStatus display labels, column definitions, avatar color map) in src/lib/constants.ts
-- [ ] T010 [P] Create .env.example with DATABASE_URL template in project root
-- [ ] T011 Create seed script with 5 users, 3 projects, 16-20 tasks distributed across 4 statuses in prisma/seed.ts
-- [ ] T012 [P] Create base UI components (Button, Card, Avatar, Badge) in src/components/ui/
-- [ ] T013 Create UserProvider context and useCurrentUser hook for current user tracking in src/hooks/useCurrentUser.tsx
-- [ ] T014 Create root layout integrating UserProvider and global styles in src/app/layout.tsx
+- [x] T005 Create Prisma schema with User, Project, Task, Comment entities, Role/TaskStatus enums, and 5 indexes in prisma/schema.prisma
+- [x] T006 Run initial Prisma migration via `npx prisma migrate dev --name init`
+- [x] T007 [P] Create Prisma client singleton with dev hot-reload guard in src/lib/db.ts
+- [x] T008 [P] Create shared TypeScript type definitions (User, Project, Task, Comment, API response types) in src/types/index.ts
+- [x] T009 [P] Create constants (TaskStatus display labels, column definitions, avatar color map) in src/lib/constants.ts
+- [x] T010 [P] Create .env.example with DATABASE_URL template in project root
+- [x] T011 Create seed script with 5 users, 3 projects, 16-20 tasks distributed across 4 statuses in prisma/seed.ts
+- [x] T012 [P] Create base UI components (Button, Card, Avatar, Badge) in src/components/ui/
+- [x] T013 Create UserProvider context and useCurrentUser hook for current user tracking in src/hooks/useCurrentUser.tsx
+- [x] T014 Create root layout integrating UserProvider and global styles in src/app/layout.tsx
 
 **Checkpoint**: 基盤完了 — ユーザーストーリーの実装開始可能
 
@@ -55,10 +55,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Create GET /api/users route handler returning all 5 users in src/app/api/users/route.ts
-- [ ] T016 [P] [US1] Create GET /api/projects route handler returning projects with taskCount in src/app/api/projects/route.ts
-- [ ] T017 [US1] Create user selection page with 5 user cards (name, role, avatarColor) as Server Component in src/app/page.tsx
-- [ ] T018 [US1] Create project list page showing 3 projects with task counts as Server Component in src/app/projects/page.tsx
+- [x] T015 [P] [US1] Create GET /api/users route handler returning all 5 users in src/app/api/users/route.ts
+- [x] T016 [P] [US1] Create GET /api/projects route handler returning projects with taskCount in src/app/api/projects/route.ts
+- [x] T017 [US1] Create user selection page with 5 user cards (name, role, avatarColor) as Server Component in src/app/page.tsx
+- [x] T018 [US1] Create project list page showing 3 projects with task counts as Server Component in src/app/projects/page.tsx
 
 **Checkpoint**: US1 完了 — ユーザー選択 → プロジェクト一覧の MVP フローが動作
 
@@ -72,13 +72,13 @@
 
 ### Implementation for User Story 2
 
-- [ ] T019 [P] [US2] Create GET /api/projects/:id/tasks route handler with status/position ordering in src/app/api/projects/[id]/tasks/route.ts
-- [ ] T020 [US2] Create updateTaskStatus Server Action with position recalculation in src/app/actions/tasks.ts
-- [ ] T021 [P] [US2] Create TaskCard component displaying title, assignee avatar, commentCount in src/components/board/TaskCard.tsx
-- [ ] T022 [P] [US2] Create Column component rendering task cards with drop zone in src/components/board/Column.tsx
-- [ ] T023 [US2] Create KanbanBoard component integrating @dnd-kit DnD with 4 columns and current-user card highlighting in src/components/board/KanbanBoard.tsx
-- [ ] T024 [US2] Create useOptimisticTasks hook for instant D&D visual feedback in src/hooks/useOptimisticTasks.ts
-- [ ] T025 [US2] Create kanban board page as Server Component shell fetching tasks and rendering KanbanBoard in src/app/projects/[id]/page.tsx
+- [x] T019 [P] [US2] Create GET /api/projects/:id/tasks route handler with status/position ordering in src/app/api/projects/[id]/tasks/route.ts
+- [x] T020 [US2] Create updateTaskStatus Server Action with position recalculation in src/app/actions/tasks.ts
+- [x] T021 [P] [US2] Create TaskCard component displaying title, assignee avatar, commentCount in src/components/board/TaskCard.tsx
+- [x] T022 [P] [US2] Create Column component rendering task cards with drop zone in src/components/board/Column.tsx
+- [x] T023 [US2] Create KanbanBoard component integrating @dnd-kit DnD with 4 columns and current-user card highlighting in src/components/board/KanbanBoard.tsx
+- [x] T024 [US2] Create useOptimisticTasks hook for instant D&D visual feedback in src/hooks/useOptimisticTasks.ts
+- [x] T025 [US2] Create kanban board page as Server Component shell fetching tasks and rendering KanbanBoard in src/app/projects/[id]/page.tsx
 
 **Checkpoint**: US2 完了 — かんばんボードで D&D タスク移動・色分け表示が動作
 
@@ -92,9 +92,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T026 [US3] Create assignTask Server Action with user validation in src/app/actions/tasks.ts
-- [ ] T027 [US3] Add assignee selection dropdown with user list to TaskCard in src/components/board/TaskCard.tsx
-- [ ] T028 [US3] Integrate assignee update with optimistic UI feedback in src/components/board/KanbanBoard.tsx
+- [x] T026 [US3] Create assignTask Server Action with user validation in src/app/actions/tasks.ts
+- [x] T027 [US3] Add assignee selection dropdown with user list to TaskCard in src/components/board/TaskCard.tsx
+- [x] T028 [US3] Integrate assignee update with optimistic UI feedback in src/components/board/KanbanBoard.tsx
 
 **Checkpoint**: US3 完了 — タスク担当者の変更と色の即時反映が動作
 
@@ -108,12 +108,12 @@
 
 ### Implementation for User Story 4
 
-- [ ] T029 [P] [US4] Create GET /api/tasks/:id/comments route handler with author info in src/app/api/tasks/[id]/comments/route.ts
-- [ ] T030 [US4] Create comment Server Actions (createComment, updateComment, deleteComment) with access control in src/app/actions/comments.ts
-- [ ] T031 [P] [US4] Create CommentForm component with validation (1-5000 chars, no whitespace-only) in src/components/comments/CommentForm.tsx
-- [ ] T032 [P] [US4] Create CommentList component with author info, edit/delete for own comments only in src/components/comments/CommentList.tsx
-- [ ] T033 [US4] Create TaskDetail panel integrating CommentForm + CommentList with task info in src/components/board/TaskDetail.tsx
-- [ ] T034 [US4] Add task click handler to TaskCard to open TaskDetail panel in src/components/board/TaskCard.tsx
+- [x] T029 [P] [US4] Create GET /api/tasks/:id/comments route handler with author info in src/app/api/tasks/[id]/comments/route.ts
+- [x] T030 [US4] Create comment Server Actions (createComment, updateComment, deleteComment) with access control in src/app/actions/comments.ts
+- [x] T031 [P] [US4] Create CommentForm component with validation (1-5000 chars, no whitespace-only) in src/components/comments/CommentForm.tsx
+- [x] T032 [P] [US4] Create CommentList component with author info, edit/delete for own comments only in src/components/comments/CommentList.tsx
+- [x] T033 [US4] Create TaskDetail panel integrating CommentForm + CommentList with task info in src/components/board/TaskDetail.tsx
+- [x] T034 [US4] Add task click handler to TaskCard to open TaskDetail panel in src/components/board/TaskCard.tsx
 
 **Checkpoint**: US4 完了 — コメントの CRUD とアクセス制御が動作
 
@@ -129,7 +129,7 @@
 
 ### Implementation for User Story 5
 
-- [ ] T035 [US5] Validate and adjust seed data distribution: verify each project has 4-6 tasks across TODO/IN_PROGRESS/IN_REVIEW/DONE with mixed assignees in prisma/seed.ts
+- [x] T035 [US5] Validate and adjust seed data distribution: verify each project has 4-6 tasks across TODO/IN_PROGRESS/IN_REVIEW/DONE with mixed assignees in prisma/seed.ts
 
 **Checkpoint**: US5 完了 — サンプルデータが仕様通りに投入される
 
@@ -139,11 +139,11 @@
 
 **Purpose**: 全ストーリー横断の品質向上
 
-- [ ] T036 [P] Add loading states (Suspense boundaries) and error boundaries to all pages in src/app/
-- [ ] T037 [P] Add keyboard navigation and accessibility attributes for @dnd-kit in src/components/board/KanbanBoard.tsx
-- [ ] T038 [P] Add responsive layout support for mobile/tablet in src/app/globals.css and board components
-- [ ] T039 Code cleanup: remove console.logs, verify TypeScript strict mode, run ESLint/Prettier
-- [ ] T040 Run quickstart.md validation end-to-end (setup → seed → dev server → all user stories)
+- [x] T036 [P] Add loading states (Suspense boundaries) and error boundaries to all pages in src/app/
+- [x] T037 [P] Add keyboard navigation and accessibility attributes for @dnd-kit in src/components/board/KanbanBoard.tsx
+- [x] T038 [P] Add responsive layout support for mobile/tablet in src/app/globals.css and board components
+- [x] T039 Code cleanup: remove console.logs, verify TypeScript strict mode, run ESLint/Prettier
+- [x] T040 Run quickstart.md validation end-to-end (setup → seed → dev server → all user stories)
 
 ---
 
