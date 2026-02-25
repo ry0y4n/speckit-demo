@@ -17,15 +17,15 @@
 
 ## 技術スタック
 
-| カテゴリ | 技術 |
-|---------|------|
+| カテゴリ       | 技術                               |
+| -------------- | ---------------------------------- |
 | フレームワーク | Next.js 16 (App Router, Turbopack) |
-| 言語 | TypeScript 5.9 (strict mode) |
-| ORM | Prisma 7 (PostgreSQL adapter) |
-| DB | PostgreSQL 16 |
-| DnD | @dnd-kit/core + @dnd-kit/sortable |
-| スタイリング | Tailwind CSS 4 |
-| テスト | Vitest, Playwright |
+| 言語           | TypeScript 5.9 (strict mode)       |
+| ORM            | Prisma 7 (PostgreSQL adapter)      |
+| DB             | PostgreSQL 16                      |
+| DnD            | @dnd-kit/core + @dnd-kit/sortable  |
+| スタイリング   | Tailwind CSS 4                     |
+| テスト         | Vitest, Playwright                 |
 
 ## セットアップ
 
@@ -69,7 +69,8 @@ DATABASE_URL="postgresql://taskify:taskify@localhost:5432/taskify"
 ### 4. DB 初期化 & シード
 
 ```bash
-npx prisma migrate dev --name init
+npx prisma migrate dev
+npx prisma generate
 npx prisma db seed
 ```
 
@@ -83,14 +84,14 @@ http://localhost:3000 を開くとユーザー選択画面が表示されます�
 
 ## スクリプト
 
-| コマンド | 説明 |
-|---------|------|
-| `npm run dev` | 開発サーバー起動 |
-| `npm run build` | プロダクションビルド |
-| `npm run start` | プロダクションサーバー起動 |
-| `npm run lint` | ESLint 実行 |
-| `npm run format` | Prettier でフォーマット |
-| `npm test` | Vitest でユニットテスト実行 |
+| コマンド           | 説明                         |
+| ------------------ | ---------------------------- |
+| `npm run dev`      | 開発サーバー起動             |
+| `npm run build`    | プロダクションビルド         |
+| `npm run start`    | プロダクションサーバー起動   |
+| `npm run lint`     | ESLint 実行                  |
+| `npm run format`   | Prettier でフォーマット      |
+| `npm test`         | Vitest でユニットテスト実行  |
 | `npm run test:e2e` | Playwright で E2E テスト実行 |
 
 ## プロジェクト構成
