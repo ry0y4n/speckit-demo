@@ -2,7 +2,7 @@ import { PrismaClient, Role, TaskStatus } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 
 const connectionString =
-  process.env.DATABASE_URL ?? 'postgresql://taskify:taskify@localhost:5433/taskify';
+  process.env.DATABASE_URL ?? 'postgresql://taskify:taskify@localhost:5432/taskify';
 const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
