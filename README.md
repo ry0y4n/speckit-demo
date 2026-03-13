@@ -142,6 +142,44 @@ Project ──┘
 - **Task**: タスク（4 ステータス: TODO, IN_PROGRESS, IN_REVIEW, DONE）
 - **Comment**: コメント（著者のみ編集・削除可）
 
+## Azure デプロイ
+
+Taskify は Azure App Service（`taskify-dev`）にデプロイされています。
+
+**公開 URL**: https://taskify-dev.azurewebsites.net
+
+### インフラ構成
+
+| リソース | 名前 | 用途 |
+|---------|------|------|
+| Resource Group | `rg-taskify` | 全リソースの管理グループ |
+| App Service | `taskify-dev` | Next.js アプリケーションのホスティング |
+| PostgreSQL Flexible Server | `db-for-taskify` | データベース |
+
+### CI/CD パイプライン
+
+GitHub Actions で CI/CD を自動化しています。
+
+| ワークフロー | トリガー | 内容 |
+|-------------|---------|------|
+| **CI** (`ci.yml`) | push / PR on `main` | ビルド、ユニットテスト（vitest）、成果物アップロード |
+| **CD** (`cd.yml`) | CI 成功（`main` ブランチ） | Prisma マイグレーション、App Service デプロイ |
+
+- **認証**: GitHub Actions OIDC → Azure Entra ID（シークレットレス）
+- **ビルド**: Next.js Standalone モード（`output: 'standalone'`）
+- **デプロイ**: `azure/webapps-deploy@v3`
+
+### 必要な GitHub Secrets
+
+| Secret | 説明 |
+|--------|------|
+| `AZURE_CLIENT_ID` | Entra App Registration のクライアント ID |
+| `AZURE_TENANT_ID` | Azure テナント ID |
+| `AZURE_SUBSCRIPTION_ID` | Azure サブスクリプション ID |
+| `DATABASE_URL` | PostgreSQL 接続文字列 |
+
+詳細なセットアップ手順は [specs/002-azure-appservice-deploy/quickstart.md](specs/002-azure-appservice-deploy/quickstart.md) を参照してください。
+
 ## ライセンス
 
 MIT

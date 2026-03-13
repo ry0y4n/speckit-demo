@@ -17,8 +17,8 @@
 
 **Purpose**: Next.js Standalone モード対応と Azure 環境の前提条件セットアップ
 
-- [ ] T001 `next.config.ts` に `output: 'standalone'` を追加して Next.js Standalone モードを有効化する in `next.config.ts`
-- [ ] T002 [P] `.github/workflows/` ディレクトリを作成する in `.github/workflows/`
+- [x] T001 `next.config.ts` に `output: 'standalone'` を追加して Next.js Standalone モードを有効化する in `next.config.ts`
+- [x] T002 [P] `.github/workflows/` ディレクトリを作成する in `.github/workflows/`
 
 ---
 
@@ -28,10 +28,10 @@
 
 **⚠️ CRITICAL**: Azure OIDC 認証の前提条件が整わないと CD ワークフローが動作しない
 
-- [ ] T003 Azure Entra ID に App Registration（`taskify-github-actions`）を作成し、Service Principal を作成し、rg-taskify に Contributor ロールを割り当てる（手動 Azure CLI 操作、quickstart.md Step 1 参照）
-- [ ] T004 Azure Entra ID にフェデレーション資格情報を追加し、GitHub リポジトリの main ブランチからの OIDC 認証を許可する（手動 Azure CLI 操作、quickstart.md Step 1 参照）
-- [ ] T005 GitHub リポジトリに Secrets を設定する: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `DATABASE_URL`（手動 GitHub CLI 操作、quickstart.md Step 2 参照）
-- [ ] T006 Azure App Service（taskify-dev）の構成を設定する: Node.js 20 LTS ランタイム、起動コマンド `node server.js`、環境変数 `DATABASE_URL` と `NODE_ENV=production`（手動 Azure CLI 操作、quickstart.md Step 3 参照）
+- [x] T003 Azure Entra ID に App Registration（`taskify-github-actions`）を作成し、Service Principal を作成し、rg-taskify に Contributor ロールを割り当てる（手動 Azure CLI 操作、quickstart.md Step 1 参照）
+- [x] T004 Azure Entra ID にフェデレーション資格情報を追加し、GitHub リポジトリの main ブランチからの OIDC 認証を許可する（手動 Azure CLI 操作、quickstart.md Step 1 参照）
+- [x] T005 GitHub リポジトリに Secrets を設定する: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `DATABASE_URL`（手動 GitHub CLI 操作、quickstart.md Step 2 参照）
+- [x] T006 Azure App Service（taskify-dev）の構成を設定する: Node.js 20 LTS ランタイム、起動コマンド `node server.js`、環境変数 `DATABASE_URL` と `NODE_ENV=production`（手動 Azure CLI 操作、quickstart.md Step 3 参照）
 
 **Checkpoint**: Azure 環境と GitHub Secrets が設定完了 — ワークフロー実装を開始可能
 
@@ -45,11 +45,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T007 [US1] ローカルで `npm run build` を実行し、Standalone ビルド成果物が `.next/standalone/` に生成されることを確認する
-- [ ] T008 [US1] ビルド後に `public/` と `.next/static/` を `.next/standalone/` 配下にコピーし、`prisma/` と `prisma.config.ts` もコピーする
-- [ ] T009 [US1] Azure Database for PostgreSQL Flexible Server（db-for-taskify）に対して `DATABASE_URL` 環境変数を設定した状態で `npx prisma migrate deploy` を実行し、マイグレーションを適用する
-- [ ] T010 [US1] `.next/standalone/` を zip 化し、`az webapp deploy` コマンドで Azure App Service（taskify-dev）にデプロイする
-- [ ] T011 [US1] `https://taskify-dev.azurewebsites.net` にアクセスし、ユーザー選択画面の表示、プロジェクト一覧、かんばんボード操作、タスク移動、コメント追加の全機能が正常に動作することを確認する
+- [x] T007 [US1] ローカルで `npm run build` を実行し、Standalone ビルド成果物が `.next/standalone/` に生成されることを確認する
+- [x] T008 [US1] ビルド後に `public/` と `.next/static/` を `.next/standalone/` 配下にコピーし、`prisma/` と `prisma.config.ts` もコピーする
+- [x] T009 [US1] Azure Database for PostgreSQL Flexible Server（db-for-taskify）に対して `DATABASE_URL` 環境変数を設定した状態で `npx prisma migrate deploy` を実行し、マイグレーションを適用する
+- [x] T010 [US1] `.next/standalone/` を zip 化し、`az webapp deploy` コマンドで Azure App Service（taskify-dev）にデプロイする
+- [x] T011 [US1] `https://taskify-dev.azurewebsites.net` にアクセスし、ユーザー選択画面の表示、プロジェクト一覧、かんばんボード操作、タスク移動、コメント追加の全機能が正常に動作することを確認する
 
 **Checkpoint**: Taskify が Azure App Service 上で全機能動作 — MVP 達成
 
@@ -63,10 +63,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T012 [US2] CI ワークフローの基本構造を作成する: トリガー（push/PR on main）、concurrency グループ（`ci-${{ github.ref }}`、cancel-in-progress: true）in `.github/workflows/ci.yml`
-- [ ] T013 [US2] CI ワークフローにビルド・テストジョブを実装する: checkout → setup-node (Node.js 20, cache: npm) → npm ci → `npx vitest run` → `npm run build` in `.github/workflows/ci.yml`
-- [ ] T014 [US2] CI ワークフローに Standalone 成果物のアーティファクトアップロードステップを追加する: static アセットコピー、Prisma ファイルコピー、`actions/upload-artifact@v4`（main push 時のみ条件付き実行）in `.github/workflows/ci.yml`
-- [ ] T015 [US2] CI ワークフローを main ブランチにプッシュし、GitHub Actions で正常にビルド・テストが完了し、コミットステータスに成功が表示されることを確認する
+- [x] T012 [US2] CI ワークフローの基本構造を作成する: トリガー（push/PR on main）、concurrency グループ（`ci-${{ github.ref }}`、cancel-in-progress: true）in `.github/workflows/ci.yml`
+- [x] T013 [US2] CI ワークフローにビルド・テストジョブを実装する: checkout → setup-node (Node.js 20, cache: npm) → npm ci → `npx vitest run` → `npm run build` in `.github/workflows/ci.yml`
+- [x] T014 [US2] CI ワークフローに Standalone 成果物のアーティファクトアップロードステップを追加する: static アセットコピー、Prisma ファイルコピー、`actions/upload-artifact@v4`（main push 時のみ条件付き実行）in `.github/workflows/ci.yml`
+- [x] T015 [US2] CI ワークフローを main ブランチにプッシュし、GitHub Actions で正常にビルド・テストが完了し、コミットステータスに成功が表示されることを確認する
 
 **Checkpoint**: CI パイプラインが自動実行され、ビルド・テスト結果が GitHub 上で表示される
 
@@ -80,11 +80,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T016 [US3] CD ワークフローの基本構造を作成する: トリガー（workflow_run: CI 完了 on main）、concurrency グループ（`cd-production`、cancel-in-progress: false）、permissions（id-token: write, contents: read）in `.github/workflows/cd.yml`
-- [ ] T017 [US3] CD ワークフローにアーティファクトダウンロードと Azure Login（OIDC）ステップを実装する: `actions/download-artifact@v4`、`azure/login@v2`（OIDC 認証）in `.github/workflows/cd.yml`
-- [ ] T018 [US3] CD ワークフローに Prisma マイグレーションステップを追加する: `DATABASE_URL` シークレットを環境変数に設定し `npx prisma migrate deploy` を実行 in `.github/workflows/cd.yml`
-- [ ] T019 [US3] CD ワークフローに Azure App Service デプロイステップを追加する: `azure/webapps-deploy@v3` で taskify-dev にデプロイ in `.github/workflows/cd.yml`
-- [ ] T020 [US3] main ブランチに PR をマージし、CD ワークフローが CI 成功後に自動トリガーされ、Azure App Service 上のアプリケーションが最新コードで更新されることを確認する
+- [x] T016 [US3] CD ワークフローの基本構造を作成する: トリガー（workflow_run: CI 完了 on main）、concurrency グループ（`cd-production`、cancel-in-progress: false）、permissions（id-token: write, contents: read）in `.github/workflows/cd.yml`
+- [x] T017 [US3] CD ワークフローにアーティファクトダウンロードと Azure Login（OIDC）ステップを実装する: `actions/download-artifact@v4`、`azure/login@v2`（OIDC 認証）in `.github/workflows/cd.yml`
+- [x] T018 [US3] CD ワークフローに Prisma マイグレーションステップを追加する: `DATABASE_URL` シークレットを環境変数に設定し `npx prisma migrate deploy` を実行 in `.github/workflows/cd.yml`
+- [x] T019 [US3] CD ワークフローに Azure App Service デプロイステップを追加する: `azure/webapps-deploy@v3` で taskify-dev にデプロイ in `.github/workflows/cd.yml`
+- [x] T020 [US3] main ブランチに PR をマージし、CD ワークフローが CI 成功後に自動トリガーされ、Azure App Service 上のアプリケーションが最新コードで更新されることを確認する
 
 **Checkpoint**: CI/CD パイプライン全体が自動化され、push → ビルド → テスト → デプロイの完全な自動化フローが動作する
 
@@ -94,8 +94,8 @@
 
 **Purpose**: ドキュメント整備と最終検証
 
-- [ ] T021 [P] quickstart.md の手順に従って新規開発者向けにセットアップ手順の妥当性を最終確認する
-- [ ] T022 README.md にデプロイ手順と CI/CD パイプラインの概要を追記する in `README.md`
+- [x] T021 [P] quickstart.md の手順に従って新規開発者向けにセットアップ手順の妥当性を最終確認する
+- [x] T022 README.md にデプロイ手順と CI/CD パイプラインの概要を追記する in `README.md`
 
 ---
 
