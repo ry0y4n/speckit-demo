@@ -2,6 +2,8 @@ import { prisma } from '@/lib/db';
 import type { UserResponse } from '@/types';
 import { UserSelectionClient } from './UserSelectionClient';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const users = await prisma.user.findMany({
     orderBy: { name: 'asc' },
