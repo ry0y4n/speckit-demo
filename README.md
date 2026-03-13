@@ -45,6 +45,12 @@ npm install
 ### 2. データベースの準備
 
 ```bash
+# ローカルの PostgreSQL がポート 5432 を使用している場合は停止
+sudo systemctl stop postgresql
+
+# 既存コンテナがあれば削除（初回は無視して OK）
+docker rm -f taskify-db 2>/dev/null
+
 # Docker で PostgreSQL を起動
 docker run --name taskify-db \
   -e POSTGRES_USER=taskify \
@@ -53,6 +59,8 @@ docker run --name taskify-db \
   -p 5432:5432 \
   -d postgres:16
 ```
+
+> **Note**: `docker rm -f` は既存コンテナとデータを削除します。データを保持したまま再起動するだけなら `docker start taskify-db` を使ってください。
 
 ### 3. 環境変数
 
