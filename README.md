@@ -150,20 +150,20 @@ Taskify は Azure App Service（`taskify-dev`）にデプロイされていま�
 
 ### インフラ構成
 
-| リソース | 名前 | 用途 |
-|---------|------|------|
-| Resource Group | `rg-taskify` | 全リソースの管理グループ |
-| App Service | `taskify-dev` | Next.js アプリケーションのホスティング |
-| PostgreSQL Flexible Server | `db-for-taskify` | データベース |
+| リソース                   | 名前             | 用途                                   |
+| -------------------------- | ---------------- | -------------------------------------- |
+| Resource Group             | `rg-taskify`     | 全リソースの管理グループ               |
+| App Service                | `taskify-dev`    | Next.js アプリケーションのホスティング |
+| PostgreSQL Flexible Server | `db-for-taskify` | データベース                           |
 
 ### CI/CD パイプライン
 
 GitHub Actions で CI/CD を自動化しています。
 
-| ワークフロー | トリガー | 内容 |
-|-------------|---------|------|
-| **CI** (`ci.yml`) | push / PR on `main` | ビルド、ユニットテスト（vitest）、成果物アップロード |
-| **CD** (`cd.yml`) | CI 成功（`main` ブランチ） | Prisma マイグレーション、App Service デプロイ |
+| ワークフロー      | トリガー                   | 内容                                                 |
+| ----------------- | -------------------------- | ---------------------------------------------------- |
+| **CI** (`ci.yml`) | push / PR on `main`        | ビルド、ユニットテスト（vitest）、成果物アップロード |
+| **CD** (`cd.yml`) | CI 成功（`main` ブランチ） | Prisma マイグレーション、App Service デプロイ        |
 
 - **認証**: GitHub Actions OIDC → Azure Entra ID（シークレットレス）
 - **ビルド**: Next.js Standalone モード（`output: 'standalone'`）
@@ -171,12 +171,12 @@ GitHub Actions で CI/CD を自動化しています。
 
 ### 必要な GitHub Secrets
 
-| Secret | 説明 |
-|--------|------|
-| `AZURE_CLIENT_ID` | Entra App Registration のクライアント ID |
-| `AZURE_TENANT_ID` | Azure テナント ID |
-| `AZURE_SUBSCRIPTION_ID` | Azure サブスクリプション ID |
-| `DATABASE_URL` | PostgreSQL 接続文字列 |
+| Secret                  | 説明                                     |
+| ----------------------- | ---------------------------------------- |
+| `AZURE_CLIENT_ID`       | Entra App Registration のクライアント ID |
+| `AZURE_TENANT_ID`       | Azure テナント ID                        |
+| `AZURE_SUBSCRIPTION_ID` | Azure サブスクリプション ID              |
+| `DATABASE_URL`          | PostgreSQL 接続文字列                    |
 
 詳細なセットアップ手順は [specs/002-azure-appservice-deploy/quickstart.md](specs/002-azure-appservice-deploy/quickstart.md) を参照してください。
 
